@@ -1,5 +1,5 @@
 # malloryh-kb-operator
-// TODO(user): Add simple overview of use/purpose
+Learning project to develop knowledge of kube-builder.
 
 ## Description
 // TODO(user): An in-depth paragraph about your project and overview of use
