@@ -1,5 +1,5 @@
 # malloryh-kb-operator
-Learning project to develop knowledge of kube-builder.
+Learning project to develop knowledge of kubebuilder.
 
 ## Description
 // TODO(user): An in-depth paragraph about your project and overview of use
