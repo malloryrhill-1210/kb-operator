@@ -5,6 +5,7 @@
 domain: core.malloryh-1210.io
 layout:
 - go.kubebuilder.io/v4
+multigroup: true
 projectName: malloryh-kb-operator
 repo: github.com/malloryrhill-1210/kb-operator.git
 resources:
@@ -12,5 +13,14 @@ resources:
   group: core
   kind: Pod
   path: k8s.io/api/core/v1
+  version: v1
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: core.malloryh-1210.io
+  group: config
+  kind: Configuration
+  path: github.com/malloryrhill-1210/kb-operator.git/api/config/v1
   version: v1
 version: "3"

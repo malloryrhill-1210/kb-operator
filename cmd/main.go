@@ -35,7 +35,9 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 
+	configv1 "github.com/malloryrhill-1210/kb-operator.git/api/config/v1"
 	"github.com/malloryrhill-1210/kb-operator.git/internal/controller"
+	configcontroller "github.com/malloryrhill-1210/kb-operator.git/internal/controller/config"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -47,6 +49,7 @@ var (
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
+	utilruntime.Must(configv1.AddToScheme(scheme))
 	// +kubebuilder:scaffold:scheme
 }
 
@@ -147,6 +150,13 @@ func main() {
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Pod")
+		os.Exit(1)
+	}
+	if err = (&configcontroller.ConfigurationReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create controller", "controller", "Configuration")
 		os.Exit(1)
 	}
 	// +kubebuilder:scaffold:builder

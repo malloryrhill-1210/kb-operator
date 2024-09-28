@@ -56,6 +56,16 @@ func (r *PodReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.R
 	}
 
 	l.Info("Pod", "Name", pod.Name, "Namespace", pod.Namespace)
+	if pod.Namespace == "ingress-nginx" {
+		pod.Annotations = map[string]string{
+			"malloryh-1210.io/ingress": "true",
+		}
+	}
+	if err := r.Update(ctx, pod); err != nil {
+		return ctrl.Result{}, err
+	}
+	l.Info("Pod", "Name", pod.Name, "Namespace", pod.Namespace, "Annotations", pod.Annotations)
+	
 	return ctrl.Result{}, nil
 }
 
