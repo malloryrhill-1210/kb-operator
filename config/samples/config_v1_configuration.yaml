@@ -1,0 +1,9 @@
+apiVersion: config.core.malloryh-1210.io/v1
+kind: Configuration
+metadata:
+  labels:
+  name: configuration-sample
+spec:
+  type: "foo"
+  setting: "default"
+  # TODO(user): Add fields here
